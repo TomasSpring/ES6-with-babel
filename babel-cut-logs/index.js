@@ -6,9 +6,7 @@ export default function({ types: t }) {
             CallExpression(path, state) {
                 const callee = path.get("callee");
 
-                if (!callee.isMemberExpression()) return;
-
-                if (isConsoleLog(callee)) {
+                if (callee.isMemberExpression() && isConsoleLog(callee)) {
                     if (path.parentPath.isExpressionStatement()) {
                         path.remove();
                     }
