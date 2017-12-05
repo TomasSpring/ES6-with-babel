@@ -14,6 +14,7 @@ body {
 .content .sources-block ul {
     list-style-type: none;
     display: flex;
+    display: -ms-flexbox; 
     justify-content: space-around;
 }
 .content .sources-block li {
