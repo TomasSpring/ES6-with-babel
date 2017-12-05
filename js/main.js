@@ -11,12 +11,13 @@ class News {
         GET_ALL_CHANELL_BUTTON.addEventListener('click', (e)=> {
             let target = e.target;
             if (target.classList.contains('source-list-img')) {
+                let source = null;
                 if (target.dataset) {
-                    var source = target.dataset.chanel;
+                    source = target.dataset.chanel;
                     
                 }
                 else {
-                    var source =  target.getAttribute('data-chanel');
+                     source =  target.getAttribute('data-chanel');
                 }
                 this.sendRequest(source);
             }
