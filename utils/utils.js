@@ -1,34 +1,22 @@
-import {API_KEY,URL,ROOT_NODE,NEWS_BLOCK,GET_ALL_CHANELL_BUTTON} from './config';
-import {datasetModule} from './dataset';
 
+module.exports = class Utils {
 
-class News {
-    /**
-     * Inits instance
-     * @param node - DOM node to instantiate class
+/**
+     * Builds url to make fetch request
+     * @param source {String} - news source
+     * @returns {string} - url
      */
-    init(node) {
-        GET_ALL_CHANELL_BUTTON.addEventListener('click', (e)=> {
-            let target = e.target;
-            if (target.classList.contains('source-list-img')) {
-                let source = null;
-                if (target.dataset) {
-                    source = target.dataset.chanel;
-                    
-                }
-                else {
-                    source =  target.getAttribute('data-chanel');
-                }
-                this.sendRequest(source);
-            }
-        });
+     buildUrl(source) {
+        if (source && source.length > 0) {
+            return `${URL}${source}&apiKey=${API_KEY}`
+        }
     };
     
     /**
      * Sends fetch request
      * @param source {String} - news source
      */
-    sendRequest(source) {
+     sendRequest(source) {
         let url = this.buildUrl(source);
         fetch(url).
         then((response) => this.parseJSON(response)).
@@ -43,7 +31,7 @@ class News {
      * @param data {Object} - data from API
      * @returns {Array|*|{}}
      */
-    parseJSON(data) {
+     parseJSON(data) {
         return data.json();
     };
     
@@ -62,7 +50,7 @@ class News {
      * @param data {Object} - data from API
      * @returns {Array|*|{}}
      */
-    parseData(data) {
+     parseData(data) {
         return data.articles.map((item) => {
             const {
                 urlToImage,
@@ -89,21 +77,4 @@ class News {
             
         });
     };
-    
-     /**
-     * Builds url to make fetch request
-     * @param source {String} - news source
-     * @returns {string} - url
-     */
-    buildUrl(source) {
-        if (source && source.length > 0) {
-            return `${URL}${source}&apiKey=${API_KEY}`
-        }
-    };
 };
-
-document.addEventListener( 'DOMContentLoaded', (e) => {
-    let newsInstance = new News();
-    newsInstance.init(ROOT_NODE);
-}, false );
-
