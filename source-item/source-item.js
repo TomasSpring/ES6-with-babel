@@ -1,7 +1,6 @@
 import {DEFAULT_SOURCE,API_KEY,URL,ROOT_NODE,NEWS_BLOCK,GET_ALL_CHANELL_BUTTON} from '../config/config';
 import './source-item.scss';
 
-import source from '../source-json/source.json';
 
 export default class News {
     /**

@@ -1,9 +1,9 @@
 module.exports = function (source) {
   
-  const JSON = typeof source === "string" ? JSON.parse(source) : source;
+  const JSON_STRING = typeof source === "string" ? JSON.parse(source) : source;
   let resultedString = {};
-  for (const key in JSON) {
-        const value = resultedString[key];
+  for (const key in JSON_STRING) {
+        const value = JSON_STRING[key];
         if (typeof value != 'number') {
             resultedString[key] = value;
         }

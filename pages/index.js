@@ -1,9 +1,8 @@
 import {GET_ALL_CHANELL_BUTTON} from '../config/config';
-
+import sources from '../source-json/source.json';
 import './index.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
-
     GET_ALL_CHANELL_BUTTON.onclick = e => import( './show-news-button.js')
         .then(module => {
             let target = e.target;
@@ -17,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     source =  target.getAttribute('data-chanel');
                 }
             }
-            
             let showNewsButton = module.default;
             showNewsButton(source);
         })

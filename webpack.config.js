@@ -38,7 +38,9 @@ const json = require('./webpack-configs/json');
              },
              {
                 test: /\.json$/,
-                loader: path.resolve('custom-loader/index.js')
+                use: path.join(__dirname, 'custom-loader', 'index.js'),
+                loader: path.resolve('custom-loader/index.js'),
+                loader: 'json'
              } 
          ],
          rules: [
