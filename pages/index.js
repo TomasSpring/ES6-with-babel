@@ -1,19 +1,29 @@
-import {API_KEY,URL,ROOT_NODE,NEWS_BLOCK,GET_ALL_CHANELL_BUTTON} from '../config/config';
+import {GET_ALL_CHANELL_BUTTON} from '../config/config';
 
 import './index.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    let showNewsbutton = document.querySelector('.js-show-default-source');
-    
-    showNewsbutton.onclick = e => import( './show-news-button.js')
+    GET_ALL_CHANELL_BUTTON.onclick = e => import( './show-news-button.js')
         .then(module => {
+            let target = e.target;
+            let source = null;
+            if (target.classList.contains('source-list-img')) {
+                if (target.dataset) {
+                   source  = target.dataset.chanel;
+                    
+                }
+                else {
+                    source =  target.getAttribute('data-chanel');
+                }
+            }
+            
             let showNewsButton = module.default;
-            showNewsButton();
-            showNewsbutton.classList.add('show-news-container__btn_hidden');
-           
+            showNewsButton(source);
         })
         .catch((e) => {
             console.error('error: ', e)
         });
+        
+      
 });

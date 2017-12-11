@@ -1,4 +1,3 @@
-//import Utils from '../utils/utils';
 import {DEFAULT_SOURCE,API_KEY,URL,ROOT_NODE,NEWS_BLOCK,GET_ALL_CHANELL_BUTTON} from '../config/config';
 import './source-item.scss';
 
@@ -9,10 +8,15 @@ export default class News {
      * Inits instance
      * @param node - DOM node to instantiate class
      */
-    init() {
-        
+    init(sources) {
+        if(sources) {
+            this.sendRequest(sources);
+        }
+        else {
+           this.sendRequest(DEFAULT_SOURCE); 
+        }
                  
-                    this.sendRequest(DEFAULT_SOURCE);
+                    
               
           
       
