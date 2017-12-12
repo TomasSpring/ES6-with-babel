@@ -79,7 +79,7 @@ module.exports = function(env) {
         return merge([
             common,
             devserver(),
-            sass()//,
+            sass()
             
             
         ])
